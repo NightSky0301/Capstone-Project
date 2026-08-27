@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@400;500&display=swap");
+
+.login-screen {
+  min-height: 100vh;
+  background: #e9e9e7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 140px;
+  font-family: "Work Sans", sans-serif;
+}
+
+.login-screen .logo {
+  display: flex;
+  gap: 22px;
+  margin: 0 0 64px;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #1a1a1a;
+}
+
+.logo-wide {
+  letter-spacing: 0.35em;
+}
+
+.logo-normal {
+  letter-spacing: 0.02em;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 232px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form input {
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border: 1.5px solid #555;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.login-form input::placeholder {
+  color: #8a8a8a;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #1a1a1a;
+}
+
+.error-message {
+  color: #a83232;
+  font-size: 12px;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.forgot-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 11px;
+  color: #6a6a6a;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.forgot-link:hover,
+.forgot-link:focus-visible {
+  color: #1a1a1a;
+}
+
+.login-button {
+  width: 100%;
+  background: #e3b788;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 11px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Work Sans", sans-serif;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.login-button:hover:not(:disabled) {
+  background: #d9a873;
+}
+
+.login-button:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Screen-reader-only labels — inputs are visually labeled by their
+   placeholder, but real <label> elements are still required for
+   accessibility (placeholders disappear once you start typing). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
