@@ -1,0 +1,123 @@
+.perf-panel {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.perf-chart-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 22px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.perf-chart-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.perf-axis-label {
+  font-size: 12px;
+  color: #666;
+  width: 60px;
+}
+
+.perf-chart-title {
+  flex: 1;
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1a1a1a;
+}
+
+.perf-nav-link {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+.perf-chart-body {
+  min-height: 300px;
+}
+
+.perf-side {
+  flex-shrink: 0;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.perf-info-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.perf-info-label {
+  font-size: 13px;
+  color: #444;
+  margin: 0 0 6px;
+}
+
+.perf-info-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.perf-daily-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.perf-daily-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px;
+}
+
+.perf-legend {
+  display: flex;
+  gap: 24px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #333;
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.perf-empty-state {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.perf-empty-state.small {
+  height: 180px;
+}

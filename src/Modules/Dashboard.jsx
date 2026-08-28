@@ -2,36 +2,42 @@ import { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import StatCard from "./Statcard.jsx";
-import BarberQueueTable from "./barbequetable";
+import BarberQueueTable from "./BarberQueueTable";
 import { initialBarbers, dashboardStats } from "./mockData";
 import "../Css/Dashboard.css";
 
-export default function Dashboard() {
+export default function Dashboard({ onLogout, onNavigate }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const [barbers, setBarbers] = useState(initialBarbers);
 
-  const toggleBarberStatus = (id) => {
+  const toggleBarberStatus = (barberToToggle) => {
     setBarbers((prev) =>
-      prev.map((b) =>
-        b.id === id
+      prev.map((barber) =>
+        barber.id === barberToToggle.id
           ? {
-              ...b,
-              status: b.status === "available" ? "on-service" : "available",
+              ...barber,
+              status:
+                barber.status === "available" ? "on-service" : "available",
             }
-          : b,
+          : barber,
       ),
     );
   };
 
-  const formatCurrency = (n) => `\u20b1${n.toLocaleString()}`;
+  const formatCurrency = (amount) => `\u20b1${amount.toLocaleString()}`;
 
   return (
     <div className="dashboard-root">
       <Header
         onMenuClick={() => setSidebarOpen((v) => !v)}
-        onLogout={() => alert("Wire this up to your real logout logic")}
+        onLogout={onLogout}
       />
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        onNavigate={onNavigate}
+      />
 
       <main className="dashboard-main">
         <div className="dashboard-top">
@@ -73,7 +79,7 @@ export default function Dashboard() {
 
         <BarberQueueTable
           barbers={barbers}
-          onToggleStatus={toggleBarberStatus}
+          onStatusClick={toggleBarberStatus}
         />
       </main>
     </div>

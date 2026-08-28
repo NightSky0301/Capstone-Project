@@ -1,0 +1,121 @@
+.services-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px;
+  z-index: 40;
+}
+
+.services-modal {
+  position: relative;
+  width: 300px;
+  background: #fff;
+  border-radius: 18px;
+  border: 1.5px solid #333;
+  padding: 24px 22px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.back-button {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.services-modal h2 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: #1a1a1a;
+}
+
+.services-list {
+  border: 1.5px solid #333;
+  border-radius: 12px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+}
+
+.service-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 15px;
+  color: #222;
+  cursor: pointer;
+}
+
+.service-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #333;
+}
+
+.service-name {
+  flex: 1;
+}
+
+.service-price {
+  font-weight: 500;
+}
+
+.total-box {
+  border: 1.5px solid #333;
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 18px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-actions button {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.cancel-button:hover {
+  background: #333;
+}
+
+.confirm-button {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.confirm-button:hover:not(:disabled) {
+  background: #333;
+}
+
+.confirm-button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}

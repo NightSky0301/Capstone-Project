@@ -1,10 +1,6 @@
 import { useState } from "react";
 import "../Css/Login.css";
 
-// Controlled login form matching the People's Barbershop design.
-// onLogin(username, password) should return a Promise and throw/reject
-// with an Error on bad credentials.
-// onForgotPassword is optional — called when that link is clicked.
 export default function Login({ onLogin, onForgotPassword }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

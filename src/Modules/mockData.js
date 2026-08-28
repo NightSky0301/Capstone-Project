@@ -1,31 +1,38 @@
-// Mock data standing in for a real backend. Each barber has a status of
-// either "on-service" (busy, gray pill) or "available" (green pill).
-// Replace this file's export with a fetch() call to your API when ready —
-// nothing else in the components needs to change as long as the shape
-// (id, name, status, heads) stays the same.
+// Placeholder data — replace each export below with a real API call once
+// the backend exists. Component code doesn't need to change: as long as
+// the shape (field names) stays the same, only this file changes.
 
-export const initialBarbers = [
-  { id: 1, name: "Baldo", status: "on-service", heads: 8 },
-  { id: 2, name: "James", status: "on-service", heads: 9 },
-  { id: 3, name: "Joshua", status: "on-service", heads: 4 },
-  { id: 4, name: "Bltoy", status: "on-service", heads: 4 },
-  { id: 5, name: "Bong", status: "available", heads: 4 },
-];
+export const initialBarbers = [];
 
 export const dashboardStats = {
-  date: "April 14, 2026",
-  serviceHeadCount: 25,
-  dailySales: 2513,
-  monthlySales: 2513,
-  mostAvailedService: "Haircut",
-  stock: "Ash Grey",
+  date: "",
+  serviceHeadCount: 0,
+  dailySales: 0,
+  monthlySales: 0,
+  mostAvailedService: "—",
+  stock: "—",
 };
 
-export const navLinks = [
-  { label: "Dashboard", href: "#" },
-  { label: "Barbers", href: "#" },
-  { label: "Services", href: "#" },
-  { label: "Sales report", href: "#" },
-  { label: "Stocks", href: "#" },
-  { label: "Settings", href: "#" },
-];
+export const services = [];
+
+export const inventoryItems = [];
+
+export const criticalStockThreshold = 5;
+
+// Transaction log — empty until a real backend exists. Each confirmed
+// payment should eventually push a record here: { barberId, date,
+// amount, method }. Reports.jsx derives its table from this once
+// it's populated; for now every date shows zeros.
+export const transactions = [];
+
+// Performance Graph tab — all empty until a real backend/transaction
+// log exists. Shapes to match when real data is wired in:
+//   barberPerformance: [{ name: "Baldo", heads: 58 }, ...]
+//   monthlySales:      [{ month: "January", amount: 18000 }, ...]
+//   dailySalesPerformance: [{ day: "Monday", amount: 4000 }, ...]
+//   greatestBarbero:   { name: "James", heads: 78 } | null
+export const barberPerformance = [];
+export const monthlySales = [];
+export const dailySalesPerformance = [];
+export const greatestBarbero = null;
+export const thisMonthSale = 0;
