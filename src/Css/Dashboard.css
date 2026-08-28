@@ -23,7 +23,6 @@ body {
   background: #e9e9e7;
 }
 
-/* ---- Header ---- */
 .header {
   min-height: 80px;
   flex-shrink: 0;
@@ -84,7 +83,6 @@ body {
   opacity: 0.8;
 }
 
-/* ---- Sidebar ---- */
 .sidebar-overlay {
   position: fixed;
   inset: 0;
@@ -150,7 +148,6 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* ---- Main content ---- */
 .dashboard-main {
   flex: 1;
   min-height: 0;
@@ -196,7 +193,6 @@ body {
   margin: 0;
 }
 
-/* ---- Stat cards ---- */
 .stat-row {
   flex-shrink: 0;
   display: flex;
@@ -233,7 +229,6 @@ body {
   margin: 0;
 }
 
-/* ---- Barber queue table ---- */
 .queue-section {
   flex: 1;
   min-height: 0;

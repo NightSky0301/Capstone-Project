@@ -108,9 +108,6 @@
   cursor: not-allowed;
 }
 
-/* Screen-reader-only labels — inputs are visually labeled by their
-   placeholder, but real <label> elements are still required for
-   accessibility (placeholders disappear once you start typing). */
 .sr-only {
   position: absolute;
   width: 1px;

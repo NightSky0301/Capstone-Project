@@ -67,7 +67,6 @@
   background: #333;
 }
 
-/* Detail modal (ref no + qr placeholder) */
 .payment-detail-modal {
   width: 360px;
 }
@@ -128,7 +127,6 @@
   cursor: not-allowed;
 }
 
-/* Receipt modal */
 .receipt-modal {
   text-align: center;
 }

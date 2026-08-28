@@ -37,7 +37,7 @@ const formatCurrency = (n) => `\u20b1${n.toLocaleString()}`;
 
 export default function PerformanceGraph({ onLogout, onNavigate }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [view, setView] = useState("barber"); // 'barber' | 'monthly'
+  const [view, setView] = useState("barber");
 
   return (
     <div className="dashboard-root">
