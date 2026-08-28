@@ -5,6 +5,7 @@ import Inventory from "./Modules/Inventory";
 import Reports from "./Modules/Reports";
 import PerformanceGraph from "./Modules/PerformanceGraph";
 import ServiceManagement from "./Modules/ServiceManagement";
+import History from "./Modules/History";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -26,7 +27,14 @@ export default function App() {
 
   const handleNavigate = (view) => {
     if (
-      ["dashboard", "inventory", "reports", "graph", "service"].includes(view)
+      [
+        "dashboard",
+        "inventory",
+        "reports",
+        "graph",
+        "service",
+        "history",
+      ].includes(view)
     ) {
       setCurrentView(view);
     } else {
@@ -61,6 +69,10 @@ export default function App() {
     return (
       <ServiceManagement onLogout={handleLogout} onNavigate={handleNavigate} />
     );
+  }
+
+  if (currentView === "history") {
+    return <History onLogout={handleLogout} onNavigate={handleNavigate} />;
   }
 
   return <Dashboard onLogout={handleLogout} onNavigate={handleNavigate} />;
