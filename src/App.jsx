@@ -7,13 +7,23 @@ import PerformanceGraph from "./Modules/PerformanceGraph";
 import ServiceManagement from "./Modules/ServiceManagement";
 import History from "./Modules/History";
 
+// Views a cashier is allowed to reach. Everything else (inventory,
+// reports, graph, service management, history) is admin-only private
+// data and must never render for a cashier — whether someone tries to
+// get there via the sidebar or any other call to onNavigate.
+const CASHIER_ALLOWED_VIEWS = ["dashboard"];
+
 export default function App() {
   const [user, setUser] = useState(null);
   const [currentView, setCurrentView] = useState("dashboard");
 
   const handleLogin = async (username, password) => {
+    // Temporary hardcoded credentials until a real backend/auth exists.
     if (username === "admin" && password === "1234") {
-      setUser({ name: "Admin" });
+      setUser({ name: "Admin", role: "admin" });
+      setCurrentView("dashboard");
+    } else if (username === "cashier" && password === "1234") {
+      setUser({ name: "Cashier", role: "cashier" });
       setCurrentView("dashboard");
     } else {
       throw new Error("Incorrect username or password.");
@@ -26,20 +36,28 @@ export default function App() {
   };
 
   const handleNavigate = (view) => {
-    if (
-      [
-        "dashboard",
-        "inventory",
-        "reports",
-        "graph",
-        "service",
-        "history",
-      ].includes(view)
-    ) {
-      setCurrentView(view);
-    } else {
+    const knownViews = [
+      "dashboard",
+      "inventory",
+      "reports",
+      "graph",
+      "service",
+      "history",
+    ];
+
+    if (!knownViews.includes(view)) {
       alert(`"${view}" isn't built yet.`);
+      return;
     }
+
+    // Cashier is locked to the allowed views regardless of how
+    // navigation was triggered.
+    if (user?.role === "cashier" && !CASHIER_ALLOWED_VIEWS.includes(view)) {
+      setCurrentView("dashboard");
+      return;
+    }
+
+    setCurrentView(view);
   };
 
   if (!user) {
@@ -51,29 +69,69 @@ export default function App() {
     );
   }
 
-  if (currentView === "inventory") {
-    return <Inventory onLogout={handleLogout} onNavigate={handleNavigate} />;
-  }
+  // Belt-and-suspenders: even if currentView somehow got set to a
+  // restricted view (e.g. stale state), a cashier never actually renders
+  // a restricted module.
+  const effectiveView =
+    user.role === "cashier" && !CASHIER_ALLOWED_VIEWS.includes(currentView)
+      ? "dashboard"
+      : currentView;
 
-  if (currentView === "reports") {
-    return <Reports onLogout={handleLogout} onNavigate={handleNavigate} />;
-  }
-
-  if (currentView === "graph") {
+  if (effectiveView === "inventory") {
     return (
-      <PerformanceGraph onLogout={handleLogout} onNavigate={handleNavigate} />
+      <Inventory
+        onLogout={handleLogout}
+        onNavigate={handleNavigate}
+        role={user.role}
+      />
     );
   }
 
-  if (currentView === "service") {
+  if (effectiveView === "reports") {
     return (
-      <ServiceManagement onLogout={handleLogout} onNavigate={handleNavigate} />
+      <Reports
+        onLogout={handleLogout}
+        onNavigate={handleNavigate}
+        role={user.role}
+      />
     );
   }
 
-  if (currentView === "history") {
-    return <History onLogout={handleLogout} onNavigate={handleNavigate} />;
+  if (effectiveView === "graph") {
+    return (
+      <PerformanceGraph
+        onLogout={handleLogout}
+        onNavigate={handleNavigate}
+        role={user.role}
+      />
+    );
   }
 
-  return <Dashboard onLogout={handleLogout} onNavigate={handleNavigate} />;
+  if (effectiveView === "service") {
+    return (
+      <ServiceManagement
+        onLogout={handleLogout}
+        onNavigate={handleNavigate}
+        role={user.role}
+      />
+    );
+  }
+
+  if (effectiveView === "history") {
+    return (
+      <History
+        onLogout={handleLogout}
+        onNavigate={handleNavigate}
+        role={user.role}
+      />
+    );
+  }
+
+  return (
+    <Dashboard
+      onLogout={handleLogout}
+      onNavigate={handleNavigate}
+      role={user.role}
+    />
+  );
 }

@@ -228,3 +228,25 @@
   background: #999;
   cursor: not-allowed;
 }
+
+/* ---- Make the Services card fill the page ---- */
+.dashboard-root .svc-card {
+  flex: 1;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* With rows: table fills the card and scrolls inside it */
+.dashboard-root .svc-table-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Empty state: centered in the taller card */
+.dashboard-root .svc-card .queue-empty {
+  flex: 1;
+  height: auto;
+}

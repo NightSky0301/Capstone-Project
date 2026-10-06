@@ -1,16 +1,25 @@
-export default function Header({ onMenuClick, onLogout }) {
+export default function Header({ onMenuClick, onLogout, role }) {
+  const roleLabel =
+    role === "admin" ? "Admin" : role === "cashier" ? "Cashier" : null;
+
+  // Cashier has nowhere to navigate to besides Dashboard, so the
+  // hamburger/sidebar toggle is pointless clutter for that role.
+  const showMenuButton = role !== "cashier";
+
   return (
     <header className="header">
       <div className="header-left">
-        <button
-          className="hamburger"
-          onClick={onMenuClick}
-          aria-label="Toggle navigation menu"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        {showMenuButton && (
+          <button
+            className="hamburger"
+            onClick={onMenuClick}
+            aria-label="Toggle navigation menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        )}
 
         <div className="logo">
           <span>
@@ -22,9 +31,14 @@ export default function Header({ onMenuClick, onLogout }) {
         </div>
       </div>
 
-      <button className="logout-button" onClick={onLogout}>
-        Log Out <span aria-hidden="true">→</span>
-      </button>
+      <div className="header-right">
+        {roleLabel && (
+          <span className={`role-badge role-badge-${role}`}>{roleLabel}</span>
+        )}
+        <button className="logout-button" onClick={onLogout}>
+          Log Out <span aria-hidden="true">→</span>
+        </button>
+      </div>
     </header>
   );
 }

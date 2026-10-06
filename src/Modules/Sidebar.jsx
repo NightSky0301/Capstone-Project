@@ -1,18 +1,27 @@
 const navItems = [
-  { label: "Dashboard", view: "dashboard", Icon: HomeIcon },
-  { label: "Inventory", view: "inventory", Icon: BoxIcon },
-  { label: "Reports", view: "reports", Icon: ReportIcon },
-  { label: "P. Graph", view: "graph", Icon: GraphIcon },
-  { label: "Service M.", view: "service", Icon: ServiceIcon },
-  { label: "History", view: "history", Icon: HistoryIcon },
+  { label: "Dashboard", view: "dashboard", Icon: HomeIcon, adminOnly: false },
+  { label: "Inventory", view: "inventory", Icon: BoxIcon, adminOnly: true },
+  { label: "Reports", view: "reports", Icon: ReportIcon, adminOnly: true },
+  { label: "P. Graph", view: "graph", Icon: GraphIcon, adminOnly: true },
+  {
+    label: "Service M.",
+    view: "service",
+    Icon: ServiceIcon,
+    adminOnly: true,
+  },
+  { label: "History", view: "history", Icon: HistoryIcon, adminOnly: true },
 ];
 
-export default function Sidebar({ isOpen, onClose, onNavigate }) {
+export default function Sidebar({ isOpen, onClose, onNavigate, role }) {
   const handleClick = (e, view) => {
     e.preventDefault();
     if (onNavigate) onNavigate(view);
     onClose();
   };
+
+  const visibleItems = navItems.filter(
+    (item) => !item.adminOnly || role === "admin",
+  );
 
   return (
     <>
@@ -28,7 +37,7 @@ export default function Sidebar({ isOpen, onClose, onNavigate }) {
       >
         <div className="sidebar-divider" />
         <ul>
-          {navItems.map(({ label, view, Icon }) => (
+          {visibleItems.map(({ label, view, Icon }) => (
             <li key={label}>
               <a href="#" onClick={(e) => handleClick(e, view)}>
                 <Icon />
